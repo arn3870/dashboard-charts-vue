@@ -9,12 +9,12 @@ export default {
       {
         name: "Net Profit",
         data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-        color: "#224c98"
+        color: "#2E6BAE",
       },
       {
         name: "Revenue",
         data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-        color: "#A2FF84"
+        color: "#BBDD52",
       },
     ];
 
@@ -31,7 +31,7 @@ export default {
         bar: {
           horizontal: false,
           columnWidth: "25%",
-          borderRadius: 5
+          borderRadius: 5,
         },
       },
       dataLabels: {
@@ -55,7 +55,9 @@ export default {
           "Oct",
         ],
       },
-      yaxis: {
+      yaxis: {},
+      legend: {
+        show: false,
       },
       fill: {
         opacity: 1,
@@ -94,16 +96,41 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="bg-white w-[100%] min-h-[400px] pt-[10px]">
+    <div class="ml-[30px] mr-[30px] flex flex-row justify-between">
+      <div>
+        <h1 class="text-2xl font-bold">Tickets solved and created</h1>
+        <div class="flex flex-row">
+          <div class="flex flex-col mr-[20px]">
+            <p class="text-gray-400">Created</p>
+            <div class="flex flex-row items-center">
+              <div class="w-1.5 h-1.5 rounded-full bg-[#2E6BAE] mr-[5px]"></div>
+              <div class="font-bold">
+                986 <span class="text-green-500 text-[12px]">25%&#8599;</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <p class="text-gray-400">Solved</p>
+            <div class="flex flex-row items-center">
+              <div class="w-1.5 h-1.5 rounded-full bg-[#BBDD52] mr-[5px]"></div>
+              <div class="font-bold">
+                1132 <span class="text-green-500 text-[12px]">25%&#8599;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <select
+          class="border-none text-sm text-gray-700 py-1 pl-3 pr-1 rounded focus:outline-none focus:ring"
+        >
+          <option>This Year</option>
+          <option>This Month</option>
+          <option>This Week</option>
+        </select>
+      </div>
+    </div>
     <div ref="chartRef"></div>
   </div>
 </template>
-
-<style scoped>
-.wrapper {
-  background: white;
-  height: 400px;
-  width: 100%;
-  border-radius: 15px;
-}
-</style>

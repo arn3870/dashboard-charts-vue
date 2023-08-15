@@ -39,7 +39,3 @@ export default {
     <div ref="chartRef"></div>
   </div>
 </template>
-
-<style scoped>
-
-</style>

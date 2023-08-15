@@ -4,19 +4,16 @@ import ApexCharts from "apexcharts";
 import StatusCards from "../components/StatusCards.vue";
 import ReusbaleChart from "../components/reusbaleChart.vue";
 import BarChart from "../components/BarChart.vue";
+import PieChart from "../components/PieChart.vue";
 
 export default {
-  components: { StatusCards, ReusbaleChart, BarChart },
-  // props: {
-  //   series: Array,
-  //   options: Object,
-  // },
-  setup(props) {
+  components: { StatusCards, ReusbaleChart, BarChart, PieChart },
+  setup() {
     const series = [
       {
         name: "series1",
         data: [0, 2, 1.5, 3, 2, 3, 1, 2, 2.5, 2, 2.5, 3],
-        color: "#224c98", // Set the color here
+        color: "#22519F", // Set the color here
       },
     ];
 
@@ -66,12 +63,12 @@ export default {
       series,
       options,
       statusData: [
-        { heading: "Total Users", statNumber: 1500 },
-        { heading: "Total Users", statNumber: 1500 },
-        { heading: "Revenue", statNumber: 50000 },
-        { heading: "Revenue", statNumber: 50000 },
-        { heading: "Orders", statNumber: 300 },
-        { heading: "Orders", statNumber: 300 },
+        { heading: "All tickets", statNumber: 752 },
+        { heading: "Unassigned", statNumber: 68 },
+        { heading: "Open", statNumber: 221 },
+        { heading: "Solved", statNumber: 302 },
+        { heading: "Critical", statNumber: 10 },
+        { heading: "Orders", statNumber: 10 },
       ],
     };
   },
@@ -90,7 +87,9 @@ export default {
     </div>
     <div class="flex flex-row justify-between">
       <div class="bg-white min-h-[265px] min-w-[500px] rounded-[15px]">
-        <div class="mt-[10px] ml-[30px]">
+        <div
+          class="mt-[10px] ml-[20px] mr-[20px] flex flex-row items-center justify-between"
+        >
           <div class="chart-header-text">
             <p class="text-gray-400 text-sm">First response time</p>
             <h1 class="text-2xl font-bold">
@@ -98,12 +97,22 @@ export default {
               <span class="text-red-400 text-xs">25%&#x2198;</span>
             </h1>
           </div>
-          <div></div>
+          <div>
+            <select
+              class="border-none text-sm text-gray-700 py-1 pl-3 pr-1 rounded focus:outline-none focus:ring"
+            >
+              <option>This Year</option>
+              <option>This Month</option>
+              <option>This Week</option>
+            </select>
+          </div>
         </div>
         <reusbale-chart :series="series" :options="options"></reusbale-chart>
       </div>
       <div class="bg-white min-h-[265px] min-w-[500px] rounded-[15px]">
-        <div class="mt-[10px] ml-[30px]">
+        <div
+          class="mt-[10px] ml-[20px] mr-[20px] flex flex-row items-center justify-between"
+        >
           <div class="chart-header-text">
             <p class="text-gray-400 text-sm">Full resolution time</p>
             <h1 class="text-2xl font-bold">
@@ -111,12 +120,24 @@ export default {
               <span class="text-red-400 text-xs">25%&#x2198;</span>
             </h1>
           </div>
+          <div>
+            <select
+              class="border-none text-sm text-gray-700 py-1 pl-3 pr-1 rounded focus:outline-none focus:ring"
+            >
+              <option>This Year</option>
+              <option>This Month</option>
+              <option>This Week</option>
+            </select>
+          </div>
         </div>
         <reusbale-chart :series="series" :options="options"></reusbale-chart>
       </div>
     </div>
     <div class="mt-[20px]">
       <bar-chart></bar-chart>
+    </div>
+    <div class="mt-[20px]">
+      <pie-chart></pie-chart>
     </div>
   </div>
 </template>
