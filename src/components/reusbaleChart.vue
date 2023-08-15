@@ -41,10 +41,5 @@ export default {
 </template>
 
 <style scoped>
-.wrapper{
-  background: white;
-  height: 265px;
-  width: 500px;
-  border-radius: 15px;
-}
+
 </style>

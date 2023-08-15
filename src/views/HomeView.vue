@@ -3,9 +3,10 @@ import { ref, watchEffect, onBeforeUnmount } from "vue";
 import ApexCharts from "apexcharts";
 import StatusCards from "../components/StatusCards.vue";
 import ReusbaleChart from "../components/reusbaleChart.vue";
+import BarChart from "../components/BarChart.vue";
 
 export default {
-  components: { StatusCards, ReusbaleChart },
+  components: { StatusCards, ReusbaleChart, BarChart },
   // props: {
   //   series: Array,
   //   options: Object,
@@ -14,7 +15,7 @@ export default {
     const series = [
       {
         name: "series1",
-        data: [0, 1, 2, 3],
+        data: [0, 2, 1.5, 3, 2, 3, 1, 2, 2.5, 2, 2.5, 3],
         color: "#224c98", // Set the color here
       },
     ];
@@ -39,7 +40,20 @@ export default {
           show: true,
           color: "#F2F5FE", // Set x-axis border color
         },
-        categories: ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", 'sep', 'oct', 'nov', 'dec'],
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
       },
       yaxis: {
         axisBorder: {
@@ -66,7 +80,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <div class="status-card">
+    <div class="flex flex-row">
       <status-cards
         v-for="(card, index) in statusData"
         :key="index"
@@ -74,25 +88,35 @@ export default {
         :statNumber="card.statNumber"
       ></status-cards>
     </div>
-    <div class="stat-charts">
-      <reusbale-chart :series="series" :options="options"></reusbale-chart>
-      <reusbale-chart :series="series" :options="options"></reusbale-chart>
+    <div class="flex flex-row justify-between">
+      <div class="bg-white min-h-[265px] min-w-[500px] rounded-[15px]">
+        <div class="mt-[10px] ml-[30px]">
+          <div class="chart-header-text">
+            <p class="text-gray-400 text-sm">First response time</p>
+            <h1 class="text-2xl font-bold">
+              2 hours and 10 minutes
+              <span class="text-red-400 text-xs">25%&#x2198;</span>
+            </h1>
+          </div>
+          <div></div>
+        </div>
+        <reusbale-chart :series="series" :options="options"></reusbale-chart>
+      </div>
+      <div class="bg-white min-h-[265px] min-w-[500px] rounded-[15px]">
+        <div class="mt-[10px] ml-[30px]">
+          <div class="chart-header-text">
+            <p class="text-gray-400 text-sm">Full resolution time</p>
+            <h1 class="text-2xl font-bold">
+              1 hours and 55 minutes
+              <span class="text-red-400 text-xs">25%&#x2198;</span>
+            </h1>
+          </div>
+        </div>
+        <reusbale-chart :series="series" :options="options"></reusbale-chart>
+      </div>
+    </div>
+    <div class="mt-[20px]">
+      <bar-chart></bar-chart>
     </div>
   </div>
 </template>
-
-<style scoped>
-.weapper {
-  display: flex;
-  flex-direction: column;
-}
-.status-card {
-  display: flex;
-  flex-direction: row;
-}
-.stat-charts{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-</style>
